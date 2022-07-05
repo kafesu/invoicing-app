@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+
+body {
+    background-color: #fff8e7;
+}
+
+input,
+.textarea {
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 35px;
+    background-color: white;
+    border: none;
+    width: 100%;
+}
+
+label {
+    font-size: 0.8rem;
+    color: gray;
+}
+
+button {
+    padding: 10px 0px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    margin: 10px 0px;
+}
+
+.primary {
+    background-color: rgb(31, 31, 31);
+    color: white;
+}
+
+.danger {
+    background-color: white;
+    background-color: rgb(255, 228, 228);
+    color: rgb(252, 78, 78);
+}
