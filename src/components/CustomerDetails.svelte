@@ -15,6 +15,6 @@
     id="contactDetails"
     class="textarea"
     contenteditable="true"
-    bind:textContent={customerDetails.details}
+    bind:innerHTML={customerDetails.details}
     style="height: 150px;"
 />
