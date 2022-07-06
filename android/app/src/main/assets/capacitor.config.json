@@ -1,0 +1,6 @@
+{
+	"appId": "com.halogenapps.simpleinvoices",
+	"appName": "Simple Invoices",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}
