@@ -1,6 +1,7 @@
 <script>
     import DeleteConfirmationModal from "./DeleteConfirmationModal.svelte";
     import { navigate } from "svelte-navigator";
+    import exportToPDF from "../lib/exportToPDF"
 
     export let id, paid, save;
     let showDeleteModal = false;
@@ -16,7 +17,7 @@
     <label for="paid">Mark invoice as paid</label>
 </div>
 <button class="primary" on:click={save}>Save</button>
-<button on:click={() => navigate('/print/' + id)}>Export to PDF</button>
+<button on:click={() => exportToPDF(id)}>Export to PDF</button>
 <button class="danger" on:click={askToDelete}>Delete</button>
 <DeleteConfirmationModal {id} bind:showModal={showDeleteModal} />
 
