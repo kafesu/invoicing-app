@@ -1,0 +1,20 @@
+# Build the web portion of the application
+npm run build
+
+# Sync the android directory with the built application
+npx cap sync
+
+#Move to the android directory
+cd android
+
+# Build the android application
+./gradlew assembleRelease
+
+# Move to the application file
+cd app/build/outputs/apk/release
+
+# Align the application
+# zipalign -f -v -p 4 app-release-unsigned.apk app-unsigned-aligned.apk
+
+# Sign the application
+apksigner sign --ks /home/anesu/Documents/releaseKey.jks --out simpleInvoices.apk app-release-unsigned.apk

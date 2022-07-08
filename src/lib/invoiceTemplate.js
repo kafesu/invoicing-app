@@ -33,7 +33,7 @@ export default `
         justify-content: space-between;
     }
 
-    table, tr, td {
+    table, tr, td, th {
         border: 1px solid rgb(187, 187, 187);
         border-collapse: collapse;
     }
@@ -42,11 +42,7 @@ export default `
         width: 100%
     }
 
-    th {
-        padding: 10px;
-    }
-
-    td {
+    td, th {
         padding: 10px
     }
 </style>

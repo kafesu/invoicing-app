@@ -3,6 +3,8 @@ import invoiceTemplate from "./invoiceTemplate";
 import { formatId } from "./formatId";
 import HandleBars from "handlebars";
 import html2pdf from "html2pdf.js";
+import { Filesystem, Directory } from "@capacitor/filesystem";
+import { Share } from "@capacitor/share";
 
 export default async function exportToPDF(id) {
     let settings, invoiceData;
@@ -35,10 +37,32 @@ export default async function exportToPDF(id) {
         // Combining the template with the data
         const htmlInvoice = template(data);
 
-        // Create a print
-        const worker = html2pdf()
-            .from(htmlInvoice)
-            .save("Invoice " + formatId(id));
+        // Creating the pdf document
+        const pdf = await html2pdf().from(htmlInvoice).outputPdf();
+
+        // Converting the pdf document to Base 64
+        const base64PDF = btoa(pdf);
+
+        // Write the data to a cache file
+        const cacheFileName = "Invoice" + data.id + ".pdf";
+        await Filesystem.writeFile({
+            path: cacheFileName,
+            data: base64PDF,
+            directory: Directory.Cache,
+        });
+
+        // Get the uri of the file
+        const { uri } = await Filesystem.getUri({
+            path: cacheFileName,
+            directory: Directory.Cache,
+        });
+
+        // Share the file
+        await Share.share({
+            title: cacheFileName,
+            text: cacheFileName,
+            url: uri,
+        });
     } catch (e) {
         console.log(e);
     }
