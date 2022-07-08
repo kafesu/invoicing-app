@@ -1,17 +1,8 @@
 <script>
-    import InvoiceCard from "./InvoiceCard.svelte";
+    import { dueFilterPredicate, unpaidInvoicesPredicate, paidInvoicesPredicate } from "../lib/invoiceFilters";
     import { createInvoicesLiveQuery } from "../lib/db";
+    import InvoiceCard from "./InvoiceCard.svelte";
     const invoices = createInvoicesLiveQuery();
-
-    const dueFilterPredicate = (invoice) =>
-        Date.now() > new Date(invoice.data.dates.due).getTime() &&
-        !invoice.data.paid;
-
-    const unpaidInvoicesPredicate = (invoice) =>
-        Date.now() < new Date(invoice.data.dates.due).getTime() &&
-        !invoice.data.paid;
-
-    const paidInvoicePredicate = (invoice) => invoice.data.paid;
 
     let currency = "";
     const settings = localStorage.getItem("settings");
@@ -34,7 +25,7 @@
 
         <!-- Invoices paid -->
         <p class="heading">Paid-up</p>
-        {#each $invoices.filter(paidInvoicePredicate) as invoice (invoice.id)}
+        {#each $invoices.filter(paidInvoicesPredicate) as invoice (invoice.id)}
             <InvoiceCard {invoice} {currency} />
         {/each}
     {/if}

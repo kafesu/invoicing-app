@@ -1,9 +1,9 @@
 <script>
     import NewInvoiceButton from "../components/NewInvoiceButton.svelte";
-    import DashboardCard from "../components/DashboardCard.svelte";
+    import IndexHeader from "../components/IndexHeader.svelte";
     import Invoices from "../components/Invoices.svelte";
 </script>
 
-<DashboardCard />
+<IndexHeader />
 <Invoices />
 <NewInvoiceButton />
